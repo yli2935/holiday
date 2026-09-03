@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-noto), ui-sans-serif, system-ui, -apple-system,
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(1100px 520px at 85% -80px, rgba(125, 211, 252, 0.22), transparent 60%),
+    radial-gradient(900px 500px at 8% 32%, rgba(254, 215, 170, 0.3), transparent 60%),
+    radial-gradient(1000px 600px at 92% 78%, rgba(251, 207, 232, 0.18), transparent 60%),
+    #fff9f0;
+  color: #1e293b;
+  min-height: 100vh;
+}
+
+.font-display {
+  font-family: var(--font-pacifico), "Brush Script MT", cursive;
+}
+
+/* 海浪滚动动画（Hero 底部） */
+.wave-track {
+  animation-name: waveScroll;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes waveScroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+::selection {
+  background: #fdba74;
+  color: #7c2d12;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wave-track {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* 标题渐变微光 */
+.text-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 6s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* 卡片高光扫过（配合 .group:hover 使用） */
+.shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 60%
+  );
+  transform: translateX(-130%);
+  transition: transform 0.7s ease;
+}
+
+.group:hover .shine::after {
+  transform: translateX(130%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-shimmer {
+    animation: none;
+  }
+  .shine::after {
+    display: none;
+  }
+}
+
+/* 移动端体验 */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: clip;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* 中文艺术字（马善政毛笔楷体，呼应 Pacifico 手写花体） */
+.font-art {
+  font-family: var(--font-mashan), var(--font-noto), sans-serif;
+}
